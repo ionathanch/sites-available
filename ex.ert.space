@@ -1,24 +1,9 @@
 server {
-
-    root /srv/docker/syncthing/sync;
-    index /_h5ai/public/index.php;
-    
     server_name ex.ert.space;
-    
-    auth_basic           "Authentication Required";
-    auth_basic_user_file /etc/apache2/.htpasswd;
-    
     location / {
-        try_files $uri $uri/ =404;
-    } 
-    
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-    }
-    
-    location ~ /\.ht {
-        deny all;
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
     }
 
     listen [::]:443 ssl; # managed by Certbot
@@ -37,7 +22,6 @@ server {
 
     listen 80;
     listen [::]:80;
-    
     server_name ex.ert.space;
     return 404; # managed by Certbot
 
