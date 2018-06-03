@@ -1,6 +1,6 @@
 server {
     server_name ex.ert.space;
-    client_max_body_size 2048M;
+    client_max_body_size 512M;
     location / {
         proxy_pass http://localhost:8080;
         proxy_set_header Host $host;
