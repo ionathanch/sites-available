@@ -1,15 +1,15 @@
 server {
-    root /srv/www/in.ert.space;
+    root /srv/www/ert.space;
     server_name in.ert.space;
     error_page 404 /404.html;
     location / {
         try_files $uri $uri/ =404; 
     }
 
-    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/in.ert.space/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/in.ert.space/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/ert.space/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ert.space/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
