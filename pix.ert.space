@@ -1,9 +1,9 @@
 server {
-    root /srv/www/ert.space;
-    server_name in.ert.space;
-    error_page 404 /404.html;
+    server_name pix.ert.space;
     location / {
-        try_files $uri $uri/ =404; 
+        proxy_pass http://localhost:8008;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
     }
 
     listen [::]:443 ssl; # managed by Certbot
@@ -16,16 +16,15 @@ server {
 }
 
 server {
-    if ($host = in.ert.space) {
+    if ($host = pix.ert.space) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
 
     listen 80;
     listen [::]:80;
-    server_name in.ert.space;
+    server_name pix.ert.space;
     return 404; # managed by Certbot
 
 
 }
-
