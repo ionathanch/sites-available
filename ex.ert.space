@@ -7,6 +7,14 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 
+    location = /.well-known/carddav {
+        return 301 http://localhost:8080/remote.php/dav;
+    }
+    location = /.well-known/caldav {
+        return 301 http://localhost:8080/remote.php/dav;
+    }
+    server_name ex.ert.space;
+
     listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/ert.space/fullchain.pem; # managed by Certbot
@@ -21,11 +29,11 @@ server {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
+    server_name ex.ert.space;
 
     listen 80;
     listen [::]:80;
     server_name ex.ert.space;
     return 404; # managed by Certbot
-
-
 }
+

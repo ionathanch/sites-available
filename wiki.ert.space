@@ -1,11 +1,10 @@
-server {     
-    server_name hilb.ert.space;     
-    client_max_body_size 5M;
-    root /srv/www/hilb.ert.space;
+server {
+    server_name wiki.ert.space;
     location / {
-        try_files $uri $uri/ =404;
+        proxy_pass https://ionchypedia.readthedocs.io:443;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
     }
-    server_name hilb.ert.space;
 
     listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
@@ -16,15 +15,13 @@ server {
 }
 
 server {
-    if ($host = hilb.ert.space) {
+    if ($host = wiki.ert.space) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-    server_name hilb.ert.space;
-
-    listen 80;     
-    listen [::]:80;     
-    server_name hilb.ert.space;
+    listen 80;
+    listen [::]:80;
+    server_name wiki.ert.space;
     return 404; # managed by Certbot
 }
 

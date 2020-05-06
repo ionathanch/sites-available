@@ -1,6 +1,6 @@
 upstream fw {
     # depending on your setup, you may want to update this
-    server 0.0.0.0:5678;
+    server 0.0.0.0:5000;
 }
 map $http_upgrade $connection_upgrade {
     default upgrade;
@@ -25,21 +25,16 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/ert.space/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
 }
-
-
 
 server {
     if ($host = conc.ert.space) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
     listen 80;
     listen [::]:80;
     server_name conc.ert.space;
     return 404; # managed by Certbot
-
-
 }
+

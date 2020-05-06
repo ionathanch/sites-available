@@ -4,6 +4,7 @@ server {
     location / {
         try_files $uri $uri/ =404;
     }
+    server_name ert.space;
 
     listen [::]:443 ssl ipv6only=on; # managed by Certbot
     listen 443 ssl; # managed by Certbot
@@ -19,11 +20,11 @@ server {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
+    server_name ert.space;
 
     listen 80;
     listen [::]:80;
     server_name ert.space;
     return 404; # managed by Certbot
-
-
 }
+
