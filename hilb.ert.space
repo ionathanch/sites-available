@@ -1,7 +1,7 @@
 server {     
     server_name hilb.ert.space;     
     client_max_body_size 5M;
-    root /srv/www/hilb.ert.space;
+    root /srv/www/ert.space;
     location / {
         try_files $uri $uri/ =404;
     }
