@@ -2,6 +2,7 @@ server {
 
     server_name next.ionathan.ch;
     client_max_body_size 512M;
+    add_header Strict-Transport-Security "max-age=15552000; includeSubDomains" always;
 
     location / {
         proxy_pass http://localhost:8080;
@@ -9,10 +10,10 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
     location = /.well-known/carddav {
-        return 301 http://localhost:8080/remote.php/dav;
+        return 301 $scheme://$host/remote.php/dav;
     }
     location = /.well-known/caldav {
-        return 301 http://localhost:8080/remote.php/dav;
+        return 301 $scheme://$host/remote.php/dav;
     }
 
     listen [::]:443 ssl; # managed by Certbot
