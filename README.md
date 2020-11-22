@@ -54,6 +54,7 @@ The URL [example.ert.space](http://example.ert.space) will point to the local [p
 server {
     listen 80;
     listen [::]:80;
+    client_max_body_size 512M;
     server_name example.ert.space;
     location / {
         proxy_pass http://localhost:8080;
