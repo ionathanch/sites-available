@@ -1,5 +1,4 @@
 server {     
-    
     server_name al.ert.space;      
     root  /srv/www/al.ert.space/app;     
     index index.html /server/index.php;      
