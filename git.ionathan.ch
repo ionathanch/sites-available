@@ -19,10 +19,7 @@ server {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
     server_name git.ionathan.ch;
     listen 80;
     return 404; # managed by Certbot
-
-
 }
