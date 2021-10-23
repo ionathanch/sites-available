@@ -1,7 +1,7 @@
 server {
     server_name wiki.ert.space;
     location / {
-        proxy_pass https://ionchypedia.readthedocs.io:443;
+        proxy_pass https://github.com/ionathanch/ionathanch/wiki;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
