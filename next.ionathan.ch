@@ -16,6 +16,7 @@ server {
     }
 
     listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl;
     ssl_certificate /etc/letsencrypt/live/next.ionathan.ch/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/next.ionathan.ch/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
@@ -29,5 +30,6 @@ server {
 
     server_name next.ionathan.ch;
     listen 80;
+    listen [::]:80;
     return 404; # managed by Certbot
 }
